@@ -24,6 +24,20 @@ namespace LinqAndLambdas
                 new Person("John", 170, 77, Gender.Male)
             };
 
+            // Lets say we want people who's name is 4 characters long, and we want them in a new collection
+
+            var fourCharPeople = from p in people
+                                 where (p.Name.Length == 4)
+                                 orderby p.Name, p.Height
+                                 select p;
+
+            //Console.WriteLine(string.Join(", ", fourCharPeople));
+
+            foreach (var item in fourCharPeople)
+            {
+                Console.WriteLine($"Name: {item.Name}, Weight: {item.Weight}");
+            }
+
 
 
 
