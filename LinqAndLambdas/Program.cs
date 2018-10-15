@@ -14,24 +14,43 @@ namespace LinqAndLambdas
         {
             string[] catNames = { "Lucky", "Bella", "Luna", "Orea", "Simba", "Toby", "Loki", "Oscar" };
             List<int> numbers = new List<int>() { 1, 2, 5, 3, 5, 2, 5, 7, 87, 2, 3, 4, 35, 6, 1, 1, 7, 5, 2, 4, 54, 2, 2, 1 };
+            //object[] mix = { 1, "string", new List<int>() { 1, 2, 3, 4, 5 }, "dd", 5, new int[5] { 1, 2, 3, 4, 5 }, 4, 5, 6, 2, 4, 54, 2, 2, 1, new List<int>() { 100, 22, 33, 4,45 } };
 
-            // Lets say we want to extract all odd numbers from numbers list, and add it to a new collection. With 1 line of code, we can do that using lambda expressions.
-            List<int> oddNumbers = numbers.Where(n => (n % 2 == 1)).ToList();
-            Console.WriteLine(string.Join(", ", oddNumbers));
-
-
-            object[] mix = { 1, "string", new List<int>() { 1, 2, 3, 4, 5 }, "dd", 5, new int[5] { 1, 2, 3, 4, 5 }, 4, 5, 6, 2, 4, 54, 2, 2, 1, new List<int>() { 100, 22, 33, 4,45 } };
-            // Lets say we want to extract all integers from our mix array
-            var allIntegers = mix.OfType<int>().Where(i => i < 3);
-            Console.WriteLine(string.Join(", ", allIntegers));
-
-            var allIntLists = mix.OfType<List<int>>().ToList(); // Extracting all lists of int and then displaying them
-            for (int i = 0; i < allIntLists.Count; i++)
+            List<Warrior> warriors = new List<Warrior>()
             {
-                Console.WriteLine($"Int lists[{i}]: " + string.Join(", ", allIntLists[i]));
-            }
+                new Warrior(){ Height = 100},
+                new Warrior(){ Height = 80},
+                new Warrior(){ Height = 100},
+                new Warrior(){ Height = 70}
+            };
+
+            warriors.ForEach(w => Console.WriteLine(w.Height));
 
 
+            var shortWarrior = warriors.Select(w => w.Height); // Select returns a new collection from another collection. Cannot apply conditions on its own
+            var shortWarrior1 = warriors.Where(w => w.Height == 100); // Where returns items from the same collection that match a given condition
+
+            // Can combine those two to get where height = 100 and to return a new collection with it
+            List<int> shortwarrior2 = warriors.Where(w => w.Height == 100)
+                                        .Select(w => w.Height).ToList();
+
+
+            // ----------------------------------------------------------------------------------------------------------------------------
+            //// Lets say we want to extract all odd numbers from numbers list, and add it to a new collection. With 1 line of code, we can do that using lambda expressions.
+            //List<int> oddNumbers = numbers.Where(n => (n % 2 == 1)).ToList();
+            //Console.WriteLine(string.Join(", ", oddNumbers));
+
+
+            //object[] mix = { 1, "string", new List<int>() { 1, 2, 3, 4, 5 }, "dd", 5, new int[5] { 1, 2, 3, 4, 5 }, 4, 5, 6, 2, 4, 54, 2, 2, 1, new List<int>() { 100, 22, 33, 4,45 } };
+            //// Lets say we want to extract all integers from our mix array
+            //var allIntegers = mix.OfType<int>().Where(i => i < 3);
+            //Console.WriteLine(string.Join(", ", allIntegers));
+
+            //var allIntLists = mix.OfType<List<int>>().ToList(); // Extracting all lists of int and then displaying them
+            //for (int i = 0; i < allIntLists.Count; i++)
+            //{
+            //    Console.WriteLine($"Int lists[{i}]: " + string.Join(", ", allIntLists[i]));
+            //}
 
             // ----------------------------------------------------------------------------------------------------
             // LINQ Queries on Objects
