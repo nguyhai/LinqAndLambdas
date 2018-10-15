@@ -12,41 +12,39 @@ namespace LinqAndLambdas
     {
         static void Main(string[] args)
         {
+            string[] catNames = { "Lucky", "Bella", "Luna", "Orea", "Simba", "Toby", "Loki", "Oscar" };
+            List<int> numbers = new List<int>() { 1, 2, 5, 3, 5, 2, 5, 7, 87, 2, 3, 4, 35, 6, 1, 1, 7, 5, 2, 4, 54 };
+
+            // Lets say we want to extract all odd numbers from numbers list, and add it to a new collection. With 1 line of code, we can do that using lambda expressions.
+            var oddNumbers = numbers.Where(n => (n % 2 == 1));
+
+
+            // ----------------------------------------------------------------------------------------------------
             // LINQ Queries on Objects
-            List<Person> people = new List<Person>()
-            {
-                new Person("Hai", 120, 70, Gender.Male),
-                new Person("Fey", 110, 60, Gender.Female),
-                new Person("Kira", 130, 30, Gender.Female),
-                new Person("Luna", 140, 90, Gender.Female),
-                new Person("Anna", 150, 100, Gender.Female),
-                new Person("Kyle", 160, 120, Gender.Male),
-                new Person("John", 170, 77, Gender.Male)
-            };
+            //List<Person> people = new List<Person>()
+            //{
+            //    new Person("Hai", 120, 70, Gender.Male),
+            //    new Person("Fey", 110, 60, Gender.Female),
+            //    new Person("Kira", 130, 30, Gender.Female),
+            //    new Person("Luna", 140, 90, Gender.Female),
+            //    new Person("Anna", 150, 100, Gender.Female),
+            //    new Person("Kyle", 160, 120, Gender.Male),
+            //    new Person("John", 170, 77, Gender.Male)
+            //};
 
-            // Lets say we want people who's name is 4 characters long, and we want them in a new collection
+            //// Lets say we want people who's name is 4 characters long, and we want them in a new collection
 
-            var fourCharPeople = from p in people
-                                 where (p.Name.Length == 4)
-                                 orderby p.Name, p.Height
-                                 select p;
+            //var fourCharPeople = from p in people
+            //                     where (p.Name.Length == 4)
+            //                     orderby p.Name, p.Height
+            //                     select p;
 
-            //Console.WriteLine(string.Join(", ", fourCharPeople));
+            ////Console.WriteLine(string.Join(", ", fourCharPeople));
 
-            foreach (var item in fourCharPeople)
-            {
-                Console.WriteLine($"Name: {item.Name}, Weight: {item.Weight}");
-            }
-
-
-
-
-
-
-
-
-
-
+            //foreach (var item in fourCharPeople)
+            //{
+            //    Console.WriteLine($"Name: {item.Name}, Weight: {item.Weight}");
+            //}
 
             //----------------------------------------------------------------------------------------------------------------------------------------//
             //string sentence = "I Love cats";
