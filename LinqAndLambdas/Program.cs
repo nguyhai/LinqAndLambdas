@@ -16,7 +16,24 @@ namespace LinqAndLambdas
             List<int> numbers = new List<int>() { 1, 2, 5, 3, 5, 2, 5, 7, 87, 2, 3, 4, 35, 6, 1, 1, 7, 5, 2, 4, 54 };
 
             // Lets say we want to extract all odd numbers from numbers list, and add it to a new collection. With 1 line of code, we can do that using lambda expressions.
-            var oddNumbers = numbers.Where(n => (n % 2 == 1));
+            List<int> oddNumbers = numbers.Where(n => (n % 2 == 1)).ToList();
+
+            Console.WriteLine(string.Join(", ", oddNumbers));
+
+
+            double average = catNames.Average(cat => cat.Length); // Finding the average length of the cat name, of cat in catNames
+            Console.WriteLine(average);
+
+            double minCatNameLength = catNames.Min(cat => cat.Length);
+            Console.WriteLine(minCatNameLength);
+
+            double maxCatNameLength = catNames.Max(cat => cat.Length);
+            Console.WriteLine(maxCatNameLength);
+
+            double sumCatNameLength = catNames.Sum(cat => cat.Length);
+            Console.WriteLine(sumCatNameLength);
+
+
 
 
             // ----------------------------------------------------------------------------------------------------
