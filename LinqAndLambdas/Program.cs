@@ -13,26 +13,23 @@ namespace LinqAndLambdas
         static void Main(string[] args)
         {
             string[] catNames = { "Lucky", "Bella", "Luna", "Orea", "Simba", "Toby", "Loki", "Oscar" };
-            List<int> numbers = new List<int>() { 1, 2, 5, 3, 5, 2, 5, 7, 87, 2, 3, 4, 35, 6, 1, 1, 7, 5, 2, 4, 54 };
+            List<int> numbers = new List<int>() { 1, 2, 5, 3, 5, 2, 5, 7, 87, 2, 3, 4, 35, 6, 1, 1, 7, 5, 2, 4, 54, 2, 2, 1 };
 
             // Lets say we want to extract all odd numbers from numbers list, and add it to a new collection. With 1 line of code, we can do that using lambda expressions.
             List<int> oddNumbers = numbers.Where(n => (n % 2 == 1)).ToList();
-
             Console.WriteLine(string.Join(", ", oddNumbers));
 
 
-            double average = catNames.Average(cat => cat.Length); // Finding the average length of the cat name, of cat in catNames
-            Console.WriteLine(average);
+            object[] mix = { 1, "string", new List<int>() { 1, 2, 3, 4, 5 }, "dd", 5, new int[5] { 1, 2, 3, 4, 5 }, 4, 5, 6, 2, 4, 54, 2, 2, 1, new List<int>() { 100, 22, 33, 4,45 } };
+            // Lets say we want to extract all integers from our mix array
+            var allIntegers = mix.OfType<int>().Where(i => i < 3);
+            Console.WriteLine(string.Join(", ", allIntegers));
 
-            double minCatNameLength = catNames.Min(cat => cat.Length);
-            Console.WriteLine(minCatNameLength);
-
-            double maxCatNameLength = catNames.Max(cat => cat.Length);
-            Console.WriteLine(maxCatNameLength);
-
-            double sumCatNameLength = catNames.Sum(cat => cat.Length);
-            Console.WriteLine(sumCatNameLength);
-
+            var allIntLists = mix.OfType<List<int>>().ToList(); // Extracting all lists of int and then displaying them
+            for (int i = 0; i < allIntLists.Count; i++)
+            {
+                Console.WriteLine($"Int lists[{i}]: " + string.Join(", ", allIntLists[i]));
+            }
 
 
 
